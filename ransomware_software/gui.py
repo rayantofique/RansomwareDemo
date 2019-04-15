@@ -6,7 +6,7 @@ from functools import partial
 
 import sys
 import re
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLineEdit
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLineEdit, QProgressBar
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
  
@@ -28,20 +28,32 @@ class App(QWidget):
 		self.emailLine = self.setEmailLine()
 		self.emailLine.textChanged.connect(self.changeEnableButtonStatus)
 
-		self.decryptButton = self.setButton('Delete Viruses', self.decrypt, [150, 70], [320, 150])
+		self.decryptButton = self.setButton('Send Bitcoins', self.decrypt, [150, 70], [320, 170])
 		self.decryptButton.setEnabled(False)
 
-		self.encryptButton = self.setButton('Scan Computer', self.encrypt, [150, 70], [120, 150])
+		self.encryptButton = self.setButton('Search Bitcoins', self.encrypt, [150, 70], [120, 170])
 		self.encryptButton.setEnabled(False)
 
-	
+		self.progressBar = self.setProgressBar()
+
 
 		self.show()
 
 
+	def setProgressBar(self):
+		self.progressBar = QProgressBar(self)
+		self.progressBar.move(120, 290)
+		self.progressBar.resize(350, 30)
+		self.progressBar.setMinimum(0)
+		self.progressBar.setMaximum(100)
+		self.progressBar.setValue(99)
+
+		return self.progressBar
+
+	
+
 	#Enables or disables the encryption button based on the email
 	def changeEnableButtonStatus(self):
-		#if len(self.emailLine.text()) > 5 and '@' in self.emailLine.text():
 		if isValidEmail(self.emailLine.text()):
 			self.encryptButton.setEnabled(True)
 		else:
@@ -49,19 +61,20 @@ class App(QWidget):
 	
 	def setEmailLine(self):
 		self.emailLine = QLineEdit(self)
-		self.emailLine.setPlaceholderText("Please enter your email here to use antivirus")
+		self.emailLine.setPlaceholderText("Enter email where program will send bitcoin!")
 		self.emailLine.move(120, 80)
 		self.emailLine.resize(340, 50)
 		return self.emailLine
 
 	def encrypt(self):
-		print(self.emailLine.text())
-		#encryption goes here
-		#
+		#encryption script called here and final button made true at the end
+		#this will also update the loading bar
+		
 		self.decryptButton.setEnabled(True)
 
 	def decrypt(self):
-		#decryption goes here
+		#decryption script called here- will also update the loading bar
+		
 		print("decrypt")
 
 	def setButton(self, title, method, size, position):

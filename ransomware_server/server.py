@@ -12,7 +12,12 @@ def api_root():
 
 @app.route('/savekey', methods = ['POST'])
 def api_savekey():
-
 	if request.headers['Content-Type'] == 'application/json':
 		ks.saveKey(request.json)
 		return ""
+
+@app.route('/fetchkey', methods = ['POST'])
+def api_fetchkey():
+	if request.headers['Content-Type'] == 'application/json':
+		return ks.fetchKey(request.json)
+		

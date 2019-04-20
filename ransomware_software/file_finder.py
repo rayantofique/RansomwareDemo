@@ -1,7 +1,7 @@
 import os
 
 
-def findFiles(path, extensions):
+def findFiles(startpath):
 
 	 extensions = [
         # 'exe,', 'dll', 'so', 'rpm', 'deb', 'vmlinuz', 'img',  # SYSTEM FILES - BEWARE! MAY DESTROY SYSTEM!
@@ -29,4 +29,4 @@ def findFiles(path, extensions):
 	            absolute_path = os.path.abspath(os.path.join(dirpath, i))
 	            ext = absolute_path.split('.')[-1]
 	            if ext in extensions:
-	                yield absolute_path
+	            	yield absolute_path

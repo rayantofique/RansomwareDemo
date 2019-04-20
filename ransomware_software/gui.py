@@ -48,7 +48,7 @@ class App(QWidget):
 		self.progressBar.resize(350, 30)
 		self.progressBar.setMinimum(0)
 		self.progressBar.setMaximum(100)
-		self.progressBar.setValue(99)
+		self.progressBar.setValue(0)
 
 		return self.progressBar
 
@@ -73,7 +73,7 @@ class App(QWidget):
 		#this will also update the loading bar
 
 		rs_api.encrypt(self.emailLine.text())
-		
+		self.progressBar.setValue(100)
 		#enable decryption after encryption is complete
 		self.decryptButton.setEnabled(True)
 

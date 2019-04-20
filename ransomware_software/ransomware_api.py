@@ -19,7 +19,7 @@ def encrypt(email):
 	requests.post("http://127.0.0.1:5000/savekey", json = {'email' : email, 'privatekey' : stringB64})
 	#print(r.status_code)
 
-	#enc_dec.beginFileModification(key, enc_dec.encrypt)
+	enc_dec.beginFileModification(key, enc_dec.encrypt)
 	#update loading bar?
 	
 

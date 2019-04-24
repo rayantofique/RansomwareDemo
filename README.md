@@ -17,3 +17,8 @@ Resources used:
 https://github.com/deadPix3l/CryptSky
 
 https://stackoverflow.com/#questions/20852664/python-pycrypto-encrypt-decrypt-text-files-with-aes
+
+
+Legal notice adapted from:
+
+https://github.com/deadPix3l/CryptSky/blob/master/LEGAL

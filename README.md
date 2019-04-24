@@ -1,5 +1,15 @@
 Final project for CS590 Computer Security at Duke University
 
-Example of a ransomware attack
+Professor: Bruce Maggs
 
-This project is only intended for educational purposes and will be made private as soon as it is finished
+Instructions:
+Run the server from ransomware_server/server.py
+Run the software through ransomware_software/gui.py
+
+This project is only intended for educational purposes and is intended to show how a ransomware functions and how they can be tackled by studying them.
+There are a number of security flaws in this program that have been deliberately left as is.
+
+
+Resources used:
+https://github.com/deadPix3l/CryptSky
+https://stackoverflow.com/#questions/20852664/python-pycrypto-encrypt-decrypt-text-files-with-aes

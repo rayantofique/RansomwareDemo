@@ -3,7 +3,9 @@ Final project for CS590 Computer Security at Duke University
 Professor: Bruce Maggs
 
 Instructions:
+
 Run the server from ransomware_server/server.py
+
 Run the software through ransomware_software/gui.py
 
 This project is only intended for educational purposes and is intended to show how a ransomware functions and how they can be tackled by studying them.

@@ -15,4 +15,5 @@ Some code has been stripped from this program to deter misuse so that it does no
 
 Resources used:
 https://github.com/deadPix3l/CryptSky
+
 https://stackoverflow.com/#questions/20852664/python-pycrypto-encrypt-decrypt-text-files-with-aes
